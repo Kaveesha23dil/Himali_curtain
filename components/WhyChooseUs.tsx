@@ -3,153 +3,168 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award, Ruler, Heart, DollarSign, Headphones, ShieldCheck } from "lucide-react";
-
-const features = [
-  {
-    title: "15+ Years Expertise",
-    description: "With more than a decade of decorating windows, we ensure that you work with the best team in hand.",
-    icon: <Award className="w-6 h-6" />,
-    side: "left"
-  },
-  {
-    title: "Best Architectural Designs",
-    description: "We house some of the finest architectural designers in the trade to bring you classy and sophisticated designs.",
-    icon: <Ruler className="w-6 h-6" />,
-    side: "left"
-  },
-  {
-    title: "Quality Customer Service",
-    description: "Our friendly team is here to assist you with every step, from selection to installation.",
-    icon: <Heart className="w-6 h-6" />,
-    side: "left"
-  },
-  {
-    title: "Affordable Rates",
-    description: "Our range doesn't break the bank. We offer superior value, high quality blinds to suit your budget.",
-    icon: <DollarSign className="w-6 h-6" />,
-    side: "right"
-  },
-  {
-    title: "24/7 Support",
-    description: "We are one call away, all 7 days of the week. We make sure that your concern is our number one priority.",
-    icon: <Headphones className="w-6 h-6" />,
-    side: "right"
-  },
-  {
-    title: "Guaranteed Works",
-    description: "We guarantee a lifetime shelf life on all our products and services with our quality warranty.",
-    icon: <ShieldCheck className="w-6 h-6" />,
-    side: "right"
-  }
-];
+import { Award, Ruler, Heart, DollarSign, Headphones, ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function WhyChooseUs() {
-  const leftFeatures = features.filter(f => f.side === "left");
-  const rightFeatures = features.filter(f => f.side === "right");
-
   return (
     <section className="py-24 bg-[#fdfaf6] overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-2 mb-4"
+            >
+              <span className="w-8 h-[2px] bg-[#b38e5d]" />
+              <span className="text-[#b38e5d] font-bold tracking-[0.2em] uppercase text-[11px]">Why Choose Us</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl lg:text-7xl font-black text-[#4d3a2e] leading-tight"
+            >
+              Elevating Interiors <br /> with Expertise.
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-2 mb-4"
+            className="text-[#6b7280] text-lg max-w-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-[#b38e5d] animate-pulse" />
-            <span className="text-[#b38e5d] font-bold tracking-[0.3em] uppercase text-[10px]">AMAZING FACTS</span>
+            We combine tradition with modern aesthetics to create window treatments that reflect your personality.
+          </motion.p>
+        </div>
+
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[800px]">
+          
+          {/* Card 1: Main Expertise (Large) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="md:col-span-2 md:row-span-2 relative group rounded-[40px] overflow-hidden bg-white shadow-sm border border-black/5"
+          >
+            <Image
+              src="/bento-expertise.png"
+              alt="Expertise"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-1000"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-10 left-10 right-10">
+              <div className="bg-[#b38e5d] w-12 h-12 rounded-2xl flex items-center justify-center text-white mb-6 shadow-xl">
+                <Award size={24} />
+              </div>
+              <h3 className="text-white text-3xl font-black mb-4 leading-tight">15+ Years of <br /> Curated Excellence</h3>
+              <p className="text-white/70 text-sm max-w-xs mb-6">
+                A decade of experience in transforming homes across the island with premium fabrics and bespoke designs.
+              </p>
+              <button className="flex items-center gap-3 text-white text-xs font-bold uppercase tracking-widest group/btn">
+                Our Story <ArrowRight size={14} className="group-hover/btn:translate-x-2 transition-transform" />
+              </button>
+            </div>
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+
+          {/* Card 2: Professional Designs (Small) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl lg:text-6xl font-black text-[#4d3a2e]"
+            className="md:col-span-1 relative group rounded-[40px] overflow-hidden bg-gray-900 p-8 flex flex-col justify-between"
           >
-            Why Choose Us
-          </motion.h2>
-        </div>
+            <Image
+              src="/bento-design.png"
+              alt="Design Process"
+              fill
+              className="object-cover opacity-40 group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="relative z-10 bg-white/10 w-10 h-10 rounded-xl flex items-center justify-center text-white">
+              <Ruler size={20} />
+            </div>
+            <div className="relative z-10">
+              <h3 className="text-white text-xl font-bold mb-2">Architectural <br /> Precise Designs</h3>
+              <p className="text-white/70 text-xs">Classy and sophisticated designs tailored to your space.</p>
+            </div>
+          </motion.div>
 
-        {/* Content Grid */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
-          
-          {/* Left Features */}
-          <div className="w-full lg:w-1/3 flex flex-col gap-10 lg:gap-14">
-            {leftFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start gap-6 group"
-              >
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#b38e5d] flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  {feature.icon}
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-black text-[#4d3a2e] mb-2">{feature.title}</h3>
-                  <p className="text-[#6b7280] text-sm leading-relaxed max-w-xs">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* Card 3: 24/7 Support (Medium) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="md:col-span-1 relative group rounded-[40px] overflow-hidden bg-white p-8 flex flex-col justify-between border border-black/5"
+          >
+            <Image
+              src="/bento-support.png"
+              alt="Support"
+              fill
+              className="object-cover opacity-20 group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="relative z-10 bg-[#b38e5d]/10 w-10 h-10 rounded-xl flex items-center justify-center text-[#b38e5d]">
+              <Headphones size={20} />
+            </div>
+            <div className="relative z-10">
+              <h3 className="text-[#4d3a2e] text-xl font-bold mb-2">At Your <br /> Service 24/7</h3>
+              <p className="text-[#6b7280] text-xs font-medium">Dedicated support team for selection to installation.</p>
+            </div>
+          </motion.div>
 
-          {/* Central Image */}
-          <div className="w-full lg:w-1/3 flex justify-center order-first lg:order-none">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px]"
-            >
-              {/* Decorative Rings */}
-              <div className="absolute inset-[ -20px] rounded-full border border-[#b38e5d]/10 animate-[spin_20s_linear_infinite]" />
-              <div className="absolute inset-[ -10px] rounded-full border border-[#b38e5d]/20" />
-              
-              <div className="relative w-full h-full rounded-full overflow-hidden border-[12px] border-white shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)]">
+          {/* Card 4: Guaranteed Works (Long) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="md:col-span-2 relative group rounded-[40px] overflow-hidden bg-[#f3f4f6]"
+          >
+            <div className="absolute inset-0 flex">
+              <div className="w-1/2 p-10 flex flex-col justify-center">
+                <div className="bg-[#b38e5d] w-10 h-10 rounded-xl flex items-center justify-center text-white mb-6">
+                  <ShieldCheck size={20} />
+                </div>
+                <h3 className="text-[#4d3a2e] text-2xl font-black mb-2">Lifetime <br /> Warranty</h3>
+                <p className="text-[#6b7280] text-sm font-medium">Guranteed shelf life on all our products.</p>
+              </div>
+              <div className="w-1/2 relative overflow-hidden">
                 <Image
-                  src="/why-choose-us.png"
-                  alt="Why Choose Us"
+                  src="/bento-quality.png"
+                  alt="Quality Texture"
                   fill
-                  className="object-cover"
-                  priority
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
-            </motion.div>
-          </div>
-
-          {/* Right Features */}
-          <div className="w-full lg:w-1/3 flex flex-col gap-10 lg:gap-14">
-            {rightFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start gap-6 group"
-              >
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#b38e5d] flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  {feature.icon}
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-black text-[#4d3a2e] mb-2">{feature.title}</h3>
-                  <p className="text-[#6b7280] text-sm leading-relaxed max-w-xs">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            </div>
+          </motion.div>
 
         </div>
+
+        {/* Bottom Bar: Affordable & Inquiry */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-4 bg-white rounded-[30px] p-4 flex flex-col md:flex-row items-center justify-between shadow-sm border border-black/5"
+        >
+          <div className="flex items-center gap-4 px-4 py-2">
+            <div className="bg-[#b38e5d] p-2 rounded-full text-white">
+              <DollarSign size={16} />
+            </div>
+            <span className="text-[#4d3a2e] font-bold text-sm">Affordable Luxury Rates - High quality blinds to suit your budget.</span>
+          </div>
+          <button className="w-full md:w-auto bg-[#4d3a2e] text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#3d2e25] transition-colors shadow-lg">
+            Start Consultation
+          </button>
+        </motion.div>
       </div>
     </section>
   );
