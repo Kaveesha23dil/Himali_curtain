@@ -3,9 +3,33 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award, Ruler, Heart, DollarSign, Headphones, ShieldCheck, ArrowRight } from "lucide-react";
+import { Award, Ruler, DollarSign, Headphones, ShieldCheck, ArrowRight } from "lucide-react";
+import RevealText from "./RevealText";
 
 export default function WhyChooseUs() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 30 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.33, 1, 0.68, 1] as [number, number, number, number],
+      },
+    },
+  };
+
   return (
     <section className="py-24 bg-[#fdfaf6] overflow-hidden">
       <div className="container mx-auto px-6">
@@ -21,15 +45,10 @@ export default function WhyChooseUs() {
               <span className="w-8 h-[2px] bg-[#b38e5d]" />
               <span className="text-[#b38e5d] font-bold tracking-[0.2em] uppercase text-[11px]">Why Choose Us</span>
             </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <RevealText
+              text="Elevating Interiors with Expertise."
               className="text-4xl lg:text-7xl font-black text-[#4d3a2e] leading-tight"
-            >
-              Elevating Interiors <br /> with Expertise.
-            </motion.h2>
+            />
           </div>
           <motion.p
             initial={{ opacity: 0 }}
@@ -42,13 +61,17 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[800px]">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[800px]"
+        >
           
           {/* Card 1: Main Expertise (Large) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
             className="md:col-span-2 md:row-span-2 relative group rounded-[40px] overflow-hidden bg-white shadow-sm border border-black/5"
           >
             <Image
@@ -58,7 +81,7 @@ export default function WhyChooseUs() {
               className="object-cover group-hover:scale-110 transition-transform duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute bottom-10 left-10 right-10">
+            <div className="absolute bottom-10 left-10 right-10 text-left">
               <div className="bg-[#b38e5d] w-12 h-12 rounded-2xl flex items-center justify-center text-white mb-6 shadow-xl">
                 <Award size={24} />
               </div>
@@ -74,11 +97,8 @@ export default function WhyChooseUs() {
 
           {/* Card 2: Professional Designs (Small) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="md:col-span-1 relative group rounded-[40px] overflow-hidden bg-gray-900 p-8 flex flex-col justify-between"
+            variants={itemVariants}
+            className="md:col-span-1 relative group rounded-[40px] overflow-hidden bg-gray-900 p-8 flex flex-col justify-between text-left"
           >
             <Image
               src="/bento-design.png"
@@ -91,17 +111,14 @@ export default function WhyChooseUs() {
             </div>
             <div className="relative z-10">
               <h3 className="text-white text-xl font-bold mb-2">Architectural <br /> Precise Designs</h3>
-              <p className="text-white/70 text-xs">Classy and sophisticated designs tailored to your space.</p>
+              <p className="text-white/70 text-xs text-left">Classy and sophisticated designs tailored to your space.</p>
             </div>
           </motion.div>
 
           {/* Card 3: 24/7 Support (Medium) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="md:col-span-1 relative group rounded-[40px] overflow-hidden bg-white p-8 flex flex-col justify-between border border-black/5"
+            variants={itemVariants}
+            className="md:col-span-1 relative group rounded-[40px] overflow-hidden bg-white p-8 flex flex-col justify-between border border-black/5 text-left"
           >
             <Image
               src="/bento-support.png"
@@ -114,25 +131,22 @@ export default function WhyChooseUs() {
             </div>
             <div className="relative z-10">
               <h3 className="text-[#4d3a2e] text-xl font-bold mb-2">At Your <br /> Service 24/7</h3>
-              <p className="text-[#6b7280] text-xs font-medium">Dedicated support team for selection to installation.</p>
+              <p className="text-[#6b7280] text-xs font-medium text-left">Dedicated support team for selection to installation.</p>
             </div>
           </motion.div>
 
           {/* Card 4: Guaranteed Works (Long) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            variants={itemVariants}
             className="md:col-span-2 relative group rounded-[40px] overflow-hidden bg-[#f3f4f6]"
           >
             <div className="absolute inset-0 flex">
-              <div className="w-1/2 p-10 flex flex-col justify-center">
+              <div className="w-1/2 p-10 flex flex-col justify-center text-left">
                 <div className="bg-[#b38e5d] w-10 h-10 rounded-xl flex items-center justify-center text-white mb-6">
                   <ShieldCheck size={20} />
                 </div>
                 <h3 className="text-[#4d3a2e] text-2xl font-black mb-2">Lifetime <br /> Warranty</h3>
-                <p className="text-[#6b7280] text-sm font-medium">Guranteed shelf life on all our products.</p>
+                <p className="text-[#6b7280] text-sm font-medium text-left">Guranteed shelf life on all our products.</p>
               </div>
               <div className="w-1/2 relative overflow-hidden">
                 <Image
@@ -145,14 +159,14 @@ export default function WhyChooseUs() {
             </div>
           </motion.div>
 
-        </div>
+        </motion.div>
 
         {/* Bottom Bar: Affordable & Inquiry */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.8 }}
           className="mt-4 bg-white rounded-[30px] p-4 flex flex-col md:flex-row items-center justify-between shadow-sm border border-black/5"
         >
           <div className="flex items-center gap-4 px-4 py-2">

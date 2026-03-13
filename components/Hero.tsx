@@ -1,15 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import { Search, Phone, ArrowUpRight } from "lucide-react";
+import { Phone, ArrowUpRight, Search } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import RevealText from "./RevealText";
 
 export default function Hero() {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-start overflow-hidden bg-[#fdfaf6] p-4 sm:p-6 lg:p-8">
+    <section ref={targetRef} className="relative w-full min-h-[90vh] flex flex-col items-center justify-start overflow-hidden bg-[#fdfaf6] p-4 sm:p-6 lg:p-8">
       {/* Container with rounded corners and background image */}
-      <div className="relative w-full h-[85vh] rounded-[40px] overflow-hidden flex flex-col">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
+      <motion.div 
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
+        className="relative w-full h-[85vh] rounded-[40px] overflow-hidden flex flex-col"
+      >
+        {/* Background Image with Overlay and Parallax */}
+        <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
           <Image
             src="/hero-bg.png"
             alt="Modern Blinds"
@@ -18,12 +36,17 @@ export default function Hero() {
             priority
           />
           <div className="absolute inset-0 bg-black/10" />
-        </div>
+        </motion.div>
 
         {/* Top Navbar Layer */}
         <div className="relative z-20 w-full flex items-start justify-between p-4 sm:p-6 lg:p-8 pointer-events-none">
-          {/* Logo Area - Matches the white box in reference */}
-          <div className="bg-white rounded-2xl p-4 shadow-xl flex flex-col items-center pointer-events-auto min-w-[120px]">
+          {/* Logo Area */}
+          <motion.div 
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="bg-white rounded-2xl p-4 shadow-xl flex flex-col items-center pointer-events-auto min-w-[120px]"
+          >
             <div className="relative w-16 h-16 mb-2">
               <Image
                 src="/logo.png"
@@ -34,12 +57,17 @@ export default function Hero() {
             </div>
             <div className="text-center">
               <span className="block text-xs font-black text-gray-800 uppercase tracking-tight leading-none">Himali Curtain</span>
-              <span className="block text-[8px] text-gray-400 italic mt-1 font-medium italic">Quality you deserve</span>
+              <span className="block text-[8px] text-gray-400 italic mt-1 font-medium font-serif italic">Quality you deserve</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Navigation and Contact Banner */}
-          <div className="flex-1 max-w-[1100px] ml-4 sm:ml-8 pointer-events-auto">
+          <motion.div 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="flex-1 max-w-[1100px] ml-4 sm:ml-8 pointer-events-auto"
+          >
             <div className="bg-[#4d3a2e] rounded-full px-6 py-2.5 flex items-center justify-between shadow-2xl border border-white/10">
               {/* Contact Info */}
               <div className="flex items-center gap-3">
@@ -52,9 +80,9 @@ export default function Hero() {
               {/* Nav Links */}
               <nav className="hidden lg:flex items-center gap-10">
                 <a href="#" className="text-[#b38e5d] text-sm font-bold tracking-wider relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#b38e5d]">Home</a>
-                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors">About Us</a>
-                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors">Products</a>
-                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors">Contact</a>
+                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">About Us</a>
+                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Products</a>
+                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Contact</a>
               </nav>
 
               {/* Search Bar */}
@@ -69,31 +97,41 @@ export default function Hero() {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Hero Content (Left-Aligned) */}
-        <div className="relative z-10 flex-1 flex flex-col items-start justify-center text-left px-8 sm:px-12 lg:px-16 -mt-16">
-          <span className="text-white text-base md:text-lg font-bold tracking-[0.4em] mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] uppercase">
-            Himali Interior
-          </span>
-          <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-black mb-10 drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)] max-w-4xl leading-[1.1]">
-            Bring Magic to <br className="hidden md:block" /> Home
-          </h1>
+        <motion.div 
+          style={{ y: textY, opacity }}
+          className="relative z-10 flex-1 flex flex-col items-start justify-center text-left px-8 sm:px-12 lg:px-16 -mt-16"
+        >
+          <RevealText 
+            text="Himali Interior" 
+            className="text-white text-base md:text-lg font-bold tracking-[0.4em] mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] uppercase"
+            delay={0.5}
+          />
+          <RevealText 
+            text="Bring Magic to Home" 
+            className="text-white text-5xl md:text-7xl lg:text-8xl font-black mb-10 drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)] max-w-4xl leading-[1.1]"
+            delay={0.7}
+          />
+        </motion.div>
 
-          {/* Button removed from here */}
-        </div>
-
-        {/* Carousel Indicators (Bottom Right - White Box in corner) */}
-        <div className="absolute bottom-0 right-0 z-20 bg-white rounded-tl-[40px] px-8 py-8 shadow-[-10px_-10px_30px_rgba(0,0,0,0.05)]">
+        {/* Carousel Indicators (Bottom Right) */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1.3, duration: 0.8 }}
+          className="absolute bottom-0 right-0 z-20 bg-white rounded-tl-[40px] px-8 py-8 shadow-[-10px_-10px_30px_rgba(0,0,0,0.05)]"
+        >
           <button className="group relative flex items-center gap-2.5 bg-[#f3f4f6] text-[#4d3a2e] pl-6 pr-2 py-2 rounded-full hover:bg-[#4d3a2e] hover:text-white transition-all duration-500 shadow-sm overflow-hidden border border-gray-100">
-            <span className="text-sm font-bold tracking-wide">About Us</span>
+            <span className="text-sm font-bold tracking-wide uppercase">Discover More</span>
             <div className="bg-[#b38e5d] p-2.5 rounded-full group-hover:bg-white group-hover:text-[#4d3a2e] transition-all duration-500 group-hover:rotate-45 text-white">
               <ArrowUpRight size={16} strokeWidth={2.5} />
             </div>
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
