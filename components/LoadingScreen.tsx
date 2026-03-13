@@ -19,10 +19,17 @@ export default function LoadingScreen() {
   ];
 
   useEffect(() => {
+    const hasSeenLoader = sessionStorage.getItem("himali_loader_seen");
+    if (hasSeenLoader) {
+      setComplete(true);
+      return;
+    }
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
+          sessionStorage.setItem("himali_loader_seen", "true");
           setTimeout(() => setComplete(true), 500);
           return 100;
         }

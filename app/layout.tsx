@@ -5,6 +5,8 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import LoadingScreen from "@/components/LoadingScreen";
+import Navbar from "@/components/Navbar";
+
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -28,6 +30,7 @@ export default function RootLayout({
       >
         <LoadingScreen />
         <ScrollProgress />
+        <Navbar />
         <SmoothScroll>
           {children}
         </SmoothScroll>

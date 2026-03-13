@@ -43,67 +43,7 @@ export default function Hero() {
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
 
-        {/* Top Navbar Layer */}
-        <div className="relative z-20 w-full flex items-start justify-between p-4 sm:p-6 lg:p-8 pointer-events-none">
-          {/* Logo Area */}
-          <motion.div 
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="bg-white rounded-2xl p-4 shadow-xl flex flex-col items-center pointer-events-auto min-w-[120px]"
-          >
-            <div className="relative w-16 h-16 mb-2">
-              <Image
-                src="/logo.png"
-                alt="Himali Curtain Logo"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="text-center">
-              <span className="block text-xs font-black text-gray-800 uppercase tracking-tight leading-none">Himali Curtain</span>
-              <span className="block text-[8px] text-gray-400 italic mt-1 font-medium font-serif italic">Quality you deserve</span>
-            </div>
-          </motion.div>
-
-          {/* Navigation and Contact Banner */}
-          <motion.div 
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="flex-1 max-w-[1100px] ml-4 sm:ml-8 pointer-events-auto"
-          >
-            <div className="bg-[#4d3a2e] rounded-full px-6 py-2.5 flex items-center justify-between shadow-2xl border border-white/10">
-              {/* Contact Info */}
-              <div className="flex items-center gap-3">
-                <div className="bg-[#b38e5d] p-2 rounded-full text-white shadow-lg">
-                  <Phone size={14} className="fill-current" />
-                </div>
-                <span className="text-white text-sm font-semibold tracking-wide">+94 77 666 55 33</span>
-              </div>
-
-              {/* Nav Links */}
-              <nav className="hidden lg:flex items-center gap-10">
-                <a href="/" className="text-[#b38e5d] text-sm font-bold tracking-wider relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#b38e5d]">Home</a>
-                <a href="/about" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">About Us</a>
-                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Products</a>
-                <a href="/contact" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Contact</a>
-              </nav>
-
-              {/* Search Bar */}
-              <div className="relative hidden md:flex items-center">
-                <input
-                  type="text"
-                  placeholder="Search ..."
-                  className="bg-white rounded-full py-2 pl-5 pr-12 text-sm focus:outline-none w-44 lg:w-56 shadow-inner placeholder:text-gray-400 font-medium"
-                />
-                <button className="absolute right-1 px-3 py-1.5 bg-[#b38e5d] rounded-full text-white hover:bg-[#a07d50] transition-all flex items-center justify-center shadow-md">
-                  <Search size={14} strokeWidth={3} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        {/* Navbar is global */}
 
         {/* Hero Content (Left-Aligned) */}
         <motion.div 
