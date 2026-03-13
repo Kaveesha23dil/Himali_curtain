@@ -87,7 +87,7 @@ export default function Hero() {
                 <a href="/" className="text-[#b38e5d] text-sm font-bold tracking-wider relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#b38e5d]">Home</a>
                 <a href="/about" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">About Us</a>
                 <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Products</a>
-                <a href="#" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Contact</a>
+                <a href="/contact" className="text-white/90 text-sm font-bold tracking-wider hover:text-[#b38e5d] transition-colors uppercase">Contact</a>
               </nav>
 
               {/* Search Bar */}
