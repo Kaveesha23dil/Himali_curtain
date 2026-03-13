@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://himali-curtain.vercel.app'
+  const baseUrl = 'https://himali-curtain-git-sitemap-kaveesha23dils-projects.vercel.app'
   
   return [
     {

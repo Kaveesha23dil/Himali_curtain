@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://himali-curtain.vercel.app/sitemap.xml',
+    sitemap: 'https://himali-curtain-git-sitemap-kaveesha23dils-projects.vercel.app/sitemap.xml',
   }
 }
