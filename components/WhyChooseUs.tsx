@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import TechLabel from "./TechLabel";
 import BlueprintGrid from "./BlueprintGrid";
@@ -68,7 +69,7 @@ export default function WhyChooseUs() {
           >
             <div className="absolute inset-0 z-0">
                <Image 
-                src="/experience.png" 
+                src="/why-choose-us.png" 
                 alt="Expert Workmanship" 
                 fill 
                 className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-30 group-hover:opacity-50" 
@@ -158,12 +159,12 @@ export default function WhyChooseUs() {
           transition={{ delay: 0.8 }}
           className="mt-20 text-center"
         >
-          <button className="px-10 py-5 bg-[#4d3a2e] text-white rounded-full font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-[#3d2e25] transition-all flex items-center gap-4 mx-auto group">
+          <Link href="/contact" className="px-10 py-5 bg-[#4d3a2e] text-white rounded-full font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-[#3d2e25] transition-all flex items-center gap-4 mx-auto group w-max">
             Book a Free Site Visit
             <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center -mr-2 group-hover:bg-[#b38e5d] transition-colors">
               <ArrowRight className="w-4 h-4" />
             </div>
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

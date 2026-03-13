@@ -36,7 +36,7 @@ export default function ContactInfoCard() {
                   <div>
                     <span className="block text-white/50 text-xs font-bold uppercase tracking-widest mb-1">Phone & Mobile</span>
                     <span className="block text-xl font-bold">+94 77 666 55 33</span>
-                    <span className="block text-xl font-bold">+94 11 222 33 44</span>
+                    <span className="block text-xl font-bold">+94 77 185 98 41</span>
                   </div>
                 </div>
 
@@ -46,7 +46,7 @@ export default function ContactInfoCard() {
                   </div>
                   <div>
                     <span className="block text-white/50 text-xs font-bold uppercase tracking-widest mb-1">Write to Us</span>
-                    <span className="block text-xl font-bold">hello@himalicurtain.com</span>
+                    <span className="block text-xl font-bold">himalicurtain32@gmail.com</span>
                   </div>
                 </div>
 
@@ -56,7 +56,7 @@ export default function ContactInfoCard() {
                   </div>
                   <div>
                     <span className="block text-white/50 text-xs font-bold uppercase tracking-widest mb-1">Our Studio</span>
-                    <span className="block text-lg font-bold">521/12 Thimbirigasyaya Rd, <br />Colombo 00500</span>
+                    <span className="block text-lg font-bold">gallenawaththa, nahalla, <br />neboda</span>
                   </div>
                 </div>
               </div>

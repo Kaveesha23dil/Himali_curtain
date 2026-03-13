@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Phone, ArrowUpRight, Search } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -68,12 +69,12 @@ export default function Hero() {
           transition={{ delay: 1.3, duration: 0.8 }}
           className="absolute bottom-0 right-0 z-20 bg-white rounded-tl-[40px] px-8 py-8 shadow-[-10px_-10px_30px_rgba(0,0,0,0.05)]"
         >
-          <button className="group relative flex items-center gap-2.5 bg-[#f3f4f6] text-[#4d3a2e] pl-6 pr-2 py-2 rounded-full hover:bg-[#4d3a2e] hover:text-white transition-all duration-500 shadow-sm overflow-hidden border border-gray-100">
+          <Link href="/gallery" className="group relative flex items-center gap-2.5 bg-[#f3f4f6] text-[#4d3a2e] pl-6 pr-2 py-2 rounded-full hover:bg-[#4d3a2e] hover:text-white transition-all duration-500 shadow-sm overflow-hidden border border-gray-100">
             <span className="text-sm font-bold tracking-wide uppercase">Discover More</span>
             <div className="bg-[#b38e5d] p-2.5 rounded-full group-hover:bg-white group-hover:text-[#4d3a2e] transition-all duration-500 group-hover:rotate-45 text-white">
               <ArrowUpRight size={16} strokeWidth={2.5} />
             </div>
-          </button>
+          </Link>
         </motion.div>
       </motion.div>
     </section>

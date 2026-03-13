@@ -13,7 +13,7 @@ export default function MapSection() {
       >
         <iframe 
           title="Himali Curtain Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.896792376483!2d79.87038165!3d6.8936997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25969566ba71f%3A0xb3531f82f232467d!2sHimali%20Curtain!5e0!3m2!1sen!2slk!4v1713383500000!5m2!1sen!2slk" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.4899048286047!2d80.10951477448106!3d6.622001722011898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3cb3f6458dfdb%3A0xb2e0cd87e23faa92!2sHimali%20curtain!5e1!3m2!1sen!2slk!4v1773394347138!5m2!1sen!2slk" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 

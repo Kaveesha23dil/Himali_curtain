@@ -63,15 +63,15 @@ export default function Footer() {
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <MapPin className="w-5 h-5 text-[#b38e5d] shrink-0" />
-                <span className="text-gray-600 text-sm">Main Road, <br /> Pelawatte, Battaramulla</span>
+                <span className="text-gray-600 text-sm">gallenawaththa, nahalla, <br />neboda</span>
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="w-5 h-5 text-[#b38e5d] shrink-0" />
-                <span className="text-gray-600 text-sm">+94 11 234 5678</span>
+                <span className="text-gray-600 text-sm">+94 77 666 55 33</span>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-[#b38e5d] shrink-0" />
-                <span className="text-gray-600 text-sm">hello@himalicurtain.com</span>
+                <span className="text-gray-600 text-sm">himalicurtain32@gmail.com</span>
               </li>
             </ul>
           </div>
