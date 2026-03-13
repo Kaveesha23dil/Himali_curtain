@@ -16,6 +16,9 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Himali Curtain | Quality you deserve",
   description: "Bespoke curtains and interior solutions in Sri Lanka.",
+  verification: {
+    google: "DEn18IkFo7isUNWsWEdZ6dRa24kfs5xAVau0TKyRVtQ",
+  },
 };
 
 export default function RootLayout({
