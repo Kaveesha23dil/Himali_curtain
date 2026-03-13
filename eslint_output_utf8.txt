@@ -1,0 +1,31 @@
+﻿
+C:\Users\Kaveesha\Documents\himalicurtain\components\About.tsx
+  27:37  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  87:31  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\Kaveesha\Documents\himalicurtain\components\Hero.tsx
+  8:8  warning  'ScrollReveal' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Kaveesha\Documents\himalicurtain\components\ScrollReveal.tsx
+  24:9   error  'initialProps' is never reassigned. Use 'const' instead  prefer-const
+  25:9   error  'animateProps' is never reassigned. Use 'const' instead  prefer-const
+  38:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  39:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  42:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  43:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  46:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  47:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  50:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+  51:26  error  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+
+C:\Users\Kaveesha\Documents\himalicurtain\components\Testimonials.tsx
+  4:10  warning  'ChevronDown' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Kaveesha\Documents\himalicurtain\components\WhyChooseUs.tsx
+   6:24  warning  'Heart' is defined but never used         @typescript-eslint/no-unused-vars
+   8:8   warning  'ScrollReveal' is defined but never used  @typescript-eslint/no-unused-vars
+  29:37  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 17 problems (13 errors, 4 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+

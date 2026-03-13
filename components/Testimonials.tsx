@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import {  } from "lucide-react";
 
 export default function Testimonials() {
   return (

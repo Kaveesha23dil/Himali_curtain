@@ -2,8 +2,9 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Hotel, Theater, Briefcase } from "lucide-react";
+import RevealText from "./RevealText";
 
 const services = [
   {
@@ -48,8 +49,8 @@ export default function Services() {
   // Calculate which card is active based on scroll progress
   useEffect(() => {
     return scrollYProgress.onChange((v) => {
-      const cardIndex = Math.floor(v * services.length);
-      if (cardIndex !== activeCard && cardIndex < services.length) {
+      const cardIndex = Math.min(Math.floor(v * services.length), services.length - 1);
+      if (cardIndex !== activeCard) {
         setActiveCard(cardIndex);
       }
     });
@@ -72,13 +73,15 @@ export default function Services() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeCard}
-                  initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -50, filter: "blur(10px)" }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, x: -50, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, x: 50, filter: "blur(10px)" }}
+                  transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                   className="flex flex-col items-start"
                 >
-                  <div 
+                  <motion.div 
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
                     className="p-3.5 rounded-2xl mb-6 shadow-md transition-all duration-500 border"
                     style={{ 
                       backgroundColor: services[activeCard].color,
@@ -87,15 +90,17 @@ export default function Services() {
                     }}
                   >
                     {services[activeCard].icon}
-                  </div>
+                  </motion.div>
 
                   <span className="text-[#b38e5d] font-bold tracking-[0.3em] uppercase text-[10px] mb-4">SERVICE {activeCard + 1}</span>
 
-                  <h2 
-                    className="text-5xl lg:text-7xl font-black mb-8 leading-[1.1] transition-all duration-500 text-[#4d3a2e]"
-                  >
-                    {services[activeCard].title}
-                  </h2>
+                  <div className="h-[120px] lg:h-[160px] flex items-center">
+                    <RevealText 
+                      key={activeCard}
+                      text={services[activeCard].title} 
+                      className="text-5xl lg:text-7xl font-black transition-all duration-500 text-[#4d3a2e]" 
+                    />
+                  </div>
 
                   <p 
                     className="text-base lg:text-lg leading-relaxed transition-all duration-500 max-w-lg text-[#6b7280]"
@@ -123,10 +128,10 @@ export default function Services() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeCard}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  initial={{ opacity: 0, scale: 1.2, rotate: 2 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, rotate: -2 }}
+                  transition={{ duration: 0.9, ease: [0.33, 1, 0.68, 1] }}
                   className="absolute inset-0"
                 >
                   <Image
@@ -141,14 +146,20 @@ export default function Services() {
               </AnimatePresence>
               
               {/* Progress Indicator */}
-              <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
+              <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20">
                 {services.map((_, index) => (
                   <div 
                     key={index}
-                    className={`w-1 transition-all duration-500 rounded-full ${
-                      activeCard === index ? "h-12 bg-white" : "h-3 bg-white/30"
-                    }`}
-                  />
+                    className="relative"
+                  >
+                    <div className={`w-1 rounded-full bg-white/30 transition-all duration-700 ${activeCard === index ? "h-16" : "h-4"}`} />
+                    {activeCard === index && (
+                      <motion.div 
+                        layoutId="activeDot"
+                        className="absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-white shadow-lg"
+                      />
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
@@ -156,7 +167,21 @@ export default function Services() {
 
           {/* Mobile Images (Sequential) */}
           <div className="lg:hidden w-full space-y-12">
-             {/* Note: In a real implementation, mobile might use a simpler layout, but for this WOW effect, stacking with small animations works well */}
+            {services.map((service, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="relative h-[400px] w-full rounded-[30px] overflow-hidden shadow-xl"
+              >
+                <Image src={service.image} alt={service.title} fill className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                  <h3 className="text-white text-2xl font-bold mb-2">{service.title}</h3>
+                  <p className="text-white/70 text-sm line-clamp-2">{service.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
         </div>
