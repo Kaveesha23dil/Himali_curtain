@@ -41,10 +41,15 @@ export default function Footer() {
           <div className="border-r border-black/5 pr-12">
             <TechLabel text="SYSTEM: NAVIGATION" className="mb-8" />
             <ul className="space-y-4">
-              {["Home", "About Us", "Collections", "Services", "Contact"].map((link) => (
-                <li key={link}>
-                  <Link href={`#${link.toLowerCase().replace(" ", "-")}`} className="group flex items-center justify-between text-[#4d3a2e] font-bold hover:text-[#b38e5d] transition-colors">
-                    <span>{link}</span>
+              {[
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/about" },
+                { name: "Gallery", path: "/gallery" },
+                { name: "Contact", path: "/contact" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link href={link.path} className="group flex items-center justify-between text-[#4d3a2e] font-bold hover:text-[#b38e5d] transition-colors">
+                    <span>{link.name}</span>
                     <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                   </Link>
                 </li>
