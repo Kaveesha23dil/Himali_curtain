@@ -1,191 +1,119 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, AnimatePresence } from "framer-motion";
-import { LayoutGrid, Hotel, Theater, Briefcase } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import TechLabel from "./TechLabel";
+import BlueprintGrid from "./BlueprintGrid";
+import NotchedBox from "./NotchedBox";
 import RevealText from "./RevealText";
 
 const services = [
   {
-    title: "House Curtains",
-    description: "Transform your living spaces with our elegant home curtain collection. From sheer drapes that filter sunlight to blackout fabrics for ultimate privacy, we tailor every detail to match your interior style.",
+    title: "RESIDENTIAL SOLUTIONS",
+    id: "REF: HM-001",
     image: "/services/house-curtains.png",
-    icon: <LayoutGrid size={24} />,
-    color: "#b38e5d"
+    description: "Precision-engineered window treatments for the modern home. Combining architectural form with light-blocking performance."
   },
   {
-    title: "Hotel Curtains",
-    description: "Experience luxury and functionality with our premium hotel window treatments. We provide high-durability, flame-retardant, and sound-insulating fabrics that create a serene atmosphere for your guests.",
+    title: "HOSPITALITY GRADE",
+    id: "REF: HTL-002",
     image: "/services/hotel-curtains.png",
-    icon: <Hotel size={24} />,
-    color: "#4d3a2e"
+    description: "High-durability fire-retardant fabrics designed for premium hotel environments. Luxury that meets rigorous safety standards."
   },
   {
-    title: "Stage Curtains",
-    description: "Make every performance grand with our professional theater and stage curtains. Crafted from heavy velvet and premium fabrics, our curtains offer perfect draping and acoustic excellence.",
+    title: "PERFORMANCE STAGE",
+    id: "REF: STG-003",
     image: "/services/stage-curtains.png",
-    icon: <Theater size={24} />,
-    color: "#b38e5d"
+    description: "Heavy-weight acoustic velvet installations for theaters and auditoriums. Perfect draping with sound-dampening technology."
   },
   {
-    title: "Office Curtains",
-    description: "Boost productivity and aesthetics with our sleek corporate window solutions. Our range of vertical blinds, roller shades, and modern curtains provide perfect light control for a professional environment.",
+    title: "CORPORATE CONTROL",
+    id: "REF: OFF-004",
     image: "/services/office-curtains.png",
-    icon: <Briefcase size={24} />,
-    color: "#4d3a2e"
+    description: "Integrated solar control systems for focused workspace environments. Minimalist aesthetics with maximum visibility control."
   }
 ];
 
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeCard, setActiveCard] = useState(0);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Calculate which card is active based on scroll progress
-  useEffect(() => {
-    return scrollYProgress.onChange((v) => {
-      const cardIndex = Math.min(Math.floor(v * services.length), services.length - 1);
-      if (cardIndex !== activeCard) {
-        setActiveCard(cardIndex);
-      }
-    });
-  }, [scrollYProgress, activeCard]);
 
   return (
-    <section ref={containerRef} className="relative bg-[#fdfaf6]">
-      {/* Sticky Background Decorative Element */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#b38e5d]/5 rounded-full blur-[100px]" />
-         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#4d3a2e]/5 rounded-full blur-[100px]" />
-      </div>
+    <section ref={containerRef} className="relative bg-white py-24 lg:py-40">
+      <div className="container mx-auto px-6 lg:px-16 relative z-10">
+        <div className="flex flex-col mb-16 lg:mb-32">
+          <TechLabel text="SERVICES: CAPABILITIES" className="mb-4" />
+          <RevealText 
+            text="Solutions for Every Space" 
+            className="text-[#4d3a2e] text-4xl sm:text-5xl lg:text-7xl font-black" 
+          />
+        </div>
 
-      <div className="container mx-auto px-6 lg:px-16 py-20">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 min-h-[400vh]">
-          
-          {/* Left Column: Sticky Text Content */}
-          <div className="w-full lg:w-1/2">
-            <div className="sticky top-[20vh] h-[60vh] flex flex-col justify-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeCard}
-                  initial={{ opacity: 0, x: -50, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, x: 50, filter: "blur(10px)" }}
-                  transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-                  className="flex flex-col items-start"
-                >
-                  <motion.div 
-                    initial={{ scale: 0.8 }}
-                    animate={{ scale: 1 }}
-                    className="p-3.5 rounded-2xl mb-6 shadow-md transition-all duration-500 border"
-                    style={{ 
-                      backgroundColor: services[activeCard].color,
-                      color: "white",
-                      borderColor: services[activeCard].color + "20"
-                    }}
-                  >
-                    {services[activeCard].icon}
-                  </motion.div>
-
-                  <span className="text-[#b38e5d] font-bold tracking-[0.3em] uppercase text-[10px] mb-4">SERVICE {activeCard + 1}</span>
-
-                  <div className="h-[120px] lg:h-[160px] flex items-center">
-                    <RevealText 
-                      key={activeCard}
-                      text={services[activeCard].title} 
-                      className="text-5xl lg:text-7xl font-black transition-all duration-500 text-[#4d3a2e]" 
-                    />
-                  </div>
-
-                  <p 
-                    className="text-base lg:text-lg leading-relaxed transition-all duration-500 max-w-lg text-[#6b7280]"
-                  >
-                    {services[activeCard].description}
-                  </p>
-                  
-                  <motion.button 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.3 }}
-                    className="mt-12 flex items-center gap-4 text-[#b38e5d] text-xs font-black uppercase tracking-[0.2em] group pointer-events-auto"
-                  >
-                    <span>EXPLORE COLLECTION</span>
-                    <span className="w-12 h-[2px] bg-[#b38e5d]/40 group-hover:w-16 group-hover:bg-[#b38e5d] transition-all duration-500" />
-                  </motion.button>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Right Column: Sticky Image */}
-          <div className="hidden lg:block w-1/2">
-            <div className="sticky top-[15vh] h-[70vh] w-full rounded-[40px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border-8 border-white bg-white">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeCard}
-                  initial={{ opacity: 0, scale: 1.2, rotate: 2 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, rotate: -2 }}
-                  transition={{ duration: 0.9, ease: [0.33, 1, 0.68, 1] }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={services[activeCard].image}
-                    alt={services[activeCard].title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </motion.div>
-              </AnimatePresence>
-              
-              {/* Progress Indicator */}
-              <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20">
-                {services.map((_, index) => (
-                  <div 
-                    key={index}
-                    className="relative"
-                  >
-                    <div className={`w-1 rounded-full bg-white/30 transition-all duration-700 ${activeCard === index ? "h-16" : "h-4"}`} />
-                    {activeCard === index && (
-                      <motion.div 
-                        layoutId="activeDot"
-                        className="absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-white shadow-lg"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Images (Sequential) */}
-          <div className="lg:hidden w-full space-y-12">
-            {services.map((service, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative h-[400px] w-full rounded-[30px] overflow-hidden shadow-xl"
-              >
-                <Image src={service.image} alt={service.title} fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="text-white text-2xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-white/70 text-sm line-clamp-2">{service.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
+        <div className="space-y-40 lg:space-y-64">
+          {services.map((service, index) => (
+            <ServiceCard key={index} service={service} index={index} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ServiceCard({ service, index }: { service: any, index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  return (
+    <div ref={cardRef} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative">
+      {/* Background Index */}
+      <div className="absolute -top-20 -left-10 text-[120px] lg:text-[200px] font-black text-black/[0.03] leading-none select-none pointer-events-none">
+        0{index + 1}
+      </div>
+
+      {/* Image Column */}
+      <motion.div 
+        style={{ y }}
+        className="w-full lg:w-1/2"
+      >
+        <NotchedBox notchSize={60} className="relative h-[400px] lg:h-[600px] w-full shadow-2xl">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            className="object-cover"
+          />
+          <BlueprintGrid />
+          <div className="absolute inset-0 bg-black/10" />
+        </NotchedBox>
+      </motion.div>
+
+      {/* Content Column */}
+      <motion.div 
+        style={{ opacity }}
+        className="w-full lg:w-1/2 flex flex-col items-start"
+      >
+        <TechLabel text={service.id} className="mb-4 text-[#b38e5d]" />
+        <h3 className="text-4xl lg:text-6xl font-black text-[#4d3a2e] mb-8 leading-tight">
+          {service.title}
+        </h3>
+        <p className="text-[#6b7280] text-lg lg:text-xl leading-relaxed mb-12 max-w-md">
+          {service.description}
+        </p>
+        
+        <div className="flex items-center gap-6">
+          <div className="h-px w-16 bg-[#b38e5d]" />
+          <button className="text-xs font-black uppercase tracking-[0.3em] hover:text-[#b38e5d] transition-colors">
+            Technical Specs
+          </button>
+        </div>
+      </motion.div>
+    </div>
   );
 }

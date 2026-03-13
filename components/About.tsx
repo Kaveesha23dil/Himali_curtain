@@ -5,6 +5,9 @@ import { Award, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import RevealText from "./RevealText";
 import ScrollReveal from "./ScrollReveal";
+import NotchedBox from "./NotchedBox";
+import TechLabel from "./TechLabel";
+import BlueprintGrid from "./BlueprintGrid";
 
 export default function About() {
   const containerVariants = {
@@ -30,8 +33,9 @@ export default function About() {
   };
 
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-[#fdfaf6] overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-16">
+    <section className="relative w-full py-24 lg:py-40 bg-[#fdfaf6] overflow-hidden">
+      <BlueprintGrid />
+      <div className="container mx-auto px-6 lg:px-16 relative z-10">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -42,7 +46,7 @@ export default function About() {
           
           {/* Left Side: Image with Badge */}
           <ScrollReveal direction="right" className="relative w-full lg:w-1/2 group">
-            <div className="relative h-[450px] sm:h-[600px] w-full rounded-[40px] overflow-hidden shadow-2xl">
+            <NotchedBox notchSize={60} className="relative h-[450px] sm:h-[650px] w-full shadow-2xl overflow-hidden">
               <Image
                 src="/about-image.png"
                 alt="Modern Curtains and Blinds"
@@ -50,7 +54,7 @@ export default function About() {
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/5" />
-            </div>
+            </NotchedBox>
 
             {/* Experience Badge */}
             <motion.div 
@@ -69,9 +73,9 @@ export default function About() {
 
           {/* Right Side: Content */}
           <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="w-8 h-[2px] bg-[#b38e5d]" />
-              <RevealText text="Who we are" className="text-[#b38e5d] text-sm font-black uppercase tracking-[0.4em]" />
+            <div className="flex flex-col items-start gap-2 mb-8">
+              <TechLabel text="CORE: WHO WE ARE" />
+              <div className="w-12 h-[1px] bg-[#b38e5d]/30" />
             </div>
             
             <RevealText 

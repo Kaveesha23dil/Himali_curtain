@@ -5,6 +5,8 @@ import { Phone, ArrowUpRight, Search } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import RevealText from "./RevealText";
+import BlueprintGrid from "./BlueprintGrid";
+import TechLabel from "./TechLabel";
 
 export default function Hero() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -19,12 +21,15 @@ export default function Hero() {
 
   return (
     <section ref={targetRef} className="relative w-full min-h-[90vh] flex flex-col items-center justify-start overflow-hidden bg-[#fdfaf6] p-4 sm:p-6 lg:p-8">
-      {/* Container with rounded corners and background image */}
+      {/* Blueprint Grid Background */}
+      <BlueprintGrid />
+
+      {/* Container with specified radii and background image */}
       <motion.div 
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
-        className="relative w-full h-[85vh] rounded-[40px] overflow-hidden flex flex-col"
+        className="relative w-full h-[85vh] rounded-[80px_10px_10px_10px] sm:rounded-[120px_20px_20px_20px] overflow-hidden flex flex-col shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-black/5"
       >
         {/* Background Image with Overlay and Parallax */}
         <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
@@ -105,10 +110,9 @@ export default function Hero() {
           style={{ y: textY, opacity }}
           className="relative z-10 flex-1 flex flex-col items-start justify-center text-left px-8 sm:px-12 lg:px-16 -mt-16"
         >
-          <RevealText 
-            text="Himali Interior" 
-            className="text-white text-base md:text-lg font-bold tracking-[0.4em] mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] uppercase"
-            delay={0.5}
+          <TechLabel 
+            text="Himali Interior | REF: HM-2026" 
+            className="mb-4 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
           />
           <RevealText 
             text="Bring Magic to Home" 
